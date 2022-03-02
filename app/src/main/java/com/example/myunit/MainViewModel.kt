@@ -29,8 +29,8 @@ class MainViewModel(private val repository: MainRepository, private val dispatch
 
     fun getPost(id: String){
         viewModelScope.launch(dispatcher) {
-            val res = repository.getPost(id)
-            _post.value = res
+            val result = repository.getPost(id)
+            _post.value = result
         }
     }
 }
