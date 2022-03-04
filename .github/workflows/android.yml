@@ -13,9 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Trigger pr-autobuild action for building PR
-      uses: nikhilaii93/pr-autobuild@master
-        
     - uses: actions/checkout@v2
     - name: set up JDK 11
       uses: actions/setup-java@v2
@@ -29,9 +26,6 @@ jobs:
         
     - name: Build with Gradle
       run: ./gradlew clean build
-      
-    - name: Run Tests
-      run: ./gradlew test --stacktrace 
       
     - name: Build APK
       run: ./gradlew assembleDebug --stacktrace
@@ -47,6 +41,22 @@ jobs:
       with:
         name: apk
       
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: app/build/outputs/apk/debug/
+    - name: Trigger pr-autobuild action for building PR
+      uses: nikhilaii93/pr-autobuild@master
+      env:
+          GITHUB_TOKEN: ${{ secrets.bot_token }}
+          GITHUB_NAME: rohmatjulianto
+          DEFAULT_APPROVAL_COUNT_ENV: 1
+          BUILD_COMMENT_ENV: "OK to test"
+          PR_LABEL_ENV: RELEASE_TEST
+          
+    - name: Trigger pr-autobuild action
+      uses: nikhilaii93/pr-autobuild@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.bot_token }}
+        GITHUB_NAME: rohmatjulianto
+        DEFAULT_APPROVAL_COUNT_ENV: 1
+        BUILD_COMMENT_ENV: "OK to test"
+        PR_LABEL_ENV: RELEASE
+        DEFAULT_MERGE: squash
+        DELETE_BRANCH_ENV: true
