@@ -2,6 +2,7 @@ package com.example.myunit
 
 import com.example.myunit.data.Post
 import com.example.myunit.data.User
+import com.example.myunit.local.MyAppDb
 import com.example.myunit.module.CoreAPI
 import okhttp3.ResponseBody
 import retrofit2.HttpException
