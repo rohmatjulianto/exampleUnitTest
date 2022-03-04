@@ -2,6 +2,8 @@ package com.example.myunit
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.room.Room
+import com.example.myunit.local.MyAppDb
 import com.example.myunit.module.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -21,6 +23,9 @@ class MyApp: Application() {
     }
 
     val mainModules = module {
+//        single {
+//            Room.databaseBuilder(get(), MyAppDb::class.java, "unit-db").build()
+//        }
         single<MainRepository> {
             MainRepositoryImpl(get())
         }

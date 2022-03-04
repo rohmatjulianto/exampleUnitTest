@@ -1,6 +1,5 @@
 package com.example.myunit
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +22,7 @@ class MainViewModel(private val repository: MainRepository, private val dispatch
     fun getUser(){
         viewModelScope.launch(dispatcher) {
             val res = repository.getUser()
-            _user.value = res
+            _user.postValue(res)
         }
     }
 
