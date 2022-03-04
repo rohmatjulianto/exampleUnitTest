@@ -44,7 +44,7 @@ jobs:
     - name: Trigger pr-autobuild action for building PR
       uses: nikhilaii93/pr-autobuild@master
       env:
-          GITHUB_TOKEN: ${{ secrets.bot_token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_NAME: rohmatjulianto
           DEFAULT_APPROVAL_COUNT_ENV: 1
           BUILD_COMMENT_ENV: "OK to test"
@@ -53,7 +53,7 @@ jobs:
     - name: Trigger pr-autobuild action
       uses: nikhilaii93/pr-autobuild@master
       env:
-        GITHUB_TOKEN: ${{ secrets.bot_token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_NAME: rohmatjulianto
         DEFAULT_APPROVAL_COUNT_ENV: 1
         BUILD_COMMENT_ENV: "OK to test"
